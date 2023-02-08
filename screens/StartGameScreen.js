@@ -1,6 +1,7 @@
 const { View, Alert, TextInput, StyleSheet } = require("react-native");
 import { useState } from "react";
-import PrimaryButton from "../components/PrimaryButton";
+import PrimaryButton from "../components/ui/PrimaryButton";
+import Title from "../components/ui/Title";
 
 function StartGameScreen({ onPickNumber }) {
     const [enteredNumber, setEnteredNumber] = useState('');
@@ -29,10 +30,13 @@ function StartGameScreen({ onPickNumber }) {
     }
 
     return (
-        <View style={styles.inputContainer}>
-            <TextInput value={enteredNumber} onChangeText={numberInputHandler} style={styles.numberInput} maxLength={2} keyboardType={'number-pad'} autoCorrect={false} />
-            <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
-            <PrimaryButton onPress={confirmInputHandler}>Confirm</PrimaryButton>
+        <View style={styles.rootContainer}>
+            <Title>Guess My Number</Title>
+            <View style={styles.inputContainer}>
+                <TextInput value={enteredNumber} onChangeText={numberInputHandler} style={styles.numberInput} maxLength={2} keyboardType={'number-pad'} autoCorrect={false} />
+                <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
+                <PrimaryButton onPress={confirmInputHandler}>Confirm</PrimaryButton>
+            </View>
         </View>
     )
 }
@@ -40,9 +44,15 @@ function StartGameScreen({ onPickNumber }) {
 export default StartGameScreen
 
 const styles = StyleSheet.create({
-    inputContainer: {
-        alignItems: 'center',
+    rootContainer: {
+        flex: 1,
         marginTop: 100,
+        alignItems: 'center'
+    },
+    inputContainer: {
+        width: '80%',
+        alignItems: 'center',
+        marginTop: 36,
         marginHorizontal: 24,
         padding: 16,
         backgroundColor: "lightblue",
